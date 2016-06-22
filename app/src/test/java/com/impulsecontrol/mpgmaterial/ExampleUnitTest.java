@@ -17,4 +17,9 @@ public class ExampleUnitTest {
     public void multiple_isCorrect() throws Exception {
         assertEquals(4, 2 * 2);
     }
+
+    @Test
+    public void divie_isCorrect() throws Exception {
+        assertEquals(2, 4 / 2);
+    }
 }
