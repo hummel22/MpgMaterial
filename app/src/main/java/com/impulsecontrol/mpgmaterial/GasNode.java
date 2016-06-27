@@ -16,4 +16,8 @@ public class GasNode {
     public Double prius_milage;
     public Double prius_mpg;
     public Double prius_ave_speed;
+
+    public Double mpg;
 }
+
+
