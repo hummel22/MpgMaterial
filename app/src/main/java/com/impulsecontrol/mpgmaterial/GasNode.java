@@ -2,12 +2,13 @@ package com.impulsecontrol.mpgmaterial;
 
 import android.provider.ContactsContract;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by droid on 6/26/16.
  */
-public class GasNode {
+public class GasNode implements Serializable {
     public Date date;
     public Double price_per_gallon;
     public Double gallons;

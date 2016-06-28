@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/TextDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"/>
+    <EditText
+        android:layout_width="150dp"
+        android:inputType="date"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/EditTextDate"/>
+
+    <TextView
+        android:id="@+id/TextGallonPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gallon Price"
+        android:layout_below="@id/EditTextDate"/>
+    <EditText
+        android:id="@+id/EditTextGallonPrice"
+        android:inputType="numberDecimal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/EditTextDate"/>
+
+    <TextView
+        android:id="@+id/TextGallonsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gallons"
+        android:layout_below="@id/EditTextGallonPrice"
+        />
+    <EditText
+        android:id="@+id/EditTextGallons"
+        android:inputType="numberDecimal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/EditTextGallonPrice"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/TextMileageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mileage"
+        android:layout_below="@id/EditTextGallons"/>
+    <EditText
+        android:id="@+id/EditTextMileage"
+        android:inputType="number"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/EditTextGallons"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/TextFullTankLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Full Tank"
+        android:layout_below="@id/EditTextMileage"/>
+    <CheckBox
+        android:id="@+id/CheckBoxFullTank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/EditTextMileage"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/ButtonDone"
+        android:text="Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/CheckBoxFullTank"/>
+
+
+
+
+
+</RelativeLayout>
