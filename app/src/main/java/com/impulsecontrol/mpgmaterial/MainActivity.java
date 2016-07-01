@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 //        LayoutInflater li =(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
 //        cardView.addView(li.inflate(R.layout.cardview_layout, null));
         TextView gas = new TextView(this);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String mpgs = "NA";
         if(node != null && node.mpg != null) {
             mpgs = Double.toString(node.mpg);

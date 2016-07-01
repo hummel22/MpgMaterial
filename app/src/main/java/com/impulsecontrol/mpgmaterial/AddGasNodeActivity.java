@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,6 +26,11 @@ public class AddGasNodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_gas_node);
 
         final Button doneButton = (Button) findViewById(R.id.ButtonDone);
+
+        EditText date = (EditText) findViewById(R.id.EditTextDate);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date todayDate = new Date();
+        date.setText(dateFormat.format(todayDate));
 
         if(doneButton != null) {
             doneButton.setOnClickListener(new View.OnClickListener() {
