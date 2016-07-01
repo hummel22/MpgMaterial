@@ -82,11 +82,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resulCode, Intent intent) {
-        GasNode node = (GasNode)intent.getSerializableExtra("gasnode");
-        if(node != null) {
-            model.addGasNode(node);
-            addNodeView(node);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if(intent != null && intent.hasExtra("gasnode")) {
+            GasNode node = (GasNode) intent.getSerializableExtra("gasnode");
+            if (node != null) {
+                model.addGasNode(node);
+                addNodeView(node);
+            }
         }
     }
 
