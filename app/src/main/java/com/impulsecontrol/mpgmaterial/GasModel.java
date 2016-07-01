@@ -25,8 +25,37 @@ public class GasModel {
 
      }
 
+    public List<GasNode> getGasNodes() {
+        return gas_data;
+    }
+
+    public Integer getIndexByMileage(Integer mileage) {
+        Integer index = 0;
+        for(GasNode g : gas_data) {
+            if(mileage == g.mileage) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    public Integer getIndex(GasNode node) {
+        return getIndexByMileage(node.mileage);
+    }
+
+
     public void deleteGasNode(GasNode g) {
         gas_data.remove(g);
+        recalculateMPGs();
+    }
+
+
+    public Integer getModelSize() {
+        return gas_data.size();
+    }
+    public void deleteGasNodeByMileage(Integer mileage) {
+        gas_data.remove(getIndexByMileage(mileage));
         recalculateMPGs();
     }
 
