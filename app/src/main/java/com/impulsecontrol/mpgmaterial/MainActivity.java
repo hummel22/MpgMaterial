@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resulCode, Intent intent) {
-        Log.d("Tag", "Result Returned");
         GasNode node = (GasNode)intent.getSerializableExtra("gasnode");
         if(node != null) {
             model.addGasNode(node);
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         for (GasNode g : nodes) {
             if (rLayout != null) {
                 View v = buildCardView(g);
-                rLayout.addView(v);
+                rLayout.addView(v,0);
             }
         }
     }
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout_main);
         if (rLayout != null) {
             View v = buildCardView(node);
-            rLayout.addView(v,model.getModelSize() - model.getIndex(node));
+            rLayout.addView(v,model.getModelSize() - model.getIndex(node) - 1);
         }
     }
 
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String mpgs = "NA";
         if(node != null && node.mpg != null) {
-            Log.i("tag", "MPG: " + Double.toString(node.mpg));
             mpgs = Double.toString(node.mpg);
         }
         String gas_string = "Date: " + dateFormat.format(node.date) + " Price Per Gallons: " + Double.toString(node.price_per_gallon) + " Galloons: " + Double.toString(node.gallons)
