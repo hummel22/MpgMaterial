@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +22,7 @@ import java.util.Date;
  */
 public class AddGasNodeActivity extends AppCompatActivity {
     Integer tagIndex = -1;
+    Integer originalMileage;
     Button doneButton;
     Button deleteButton;
     EditText mileage;
@@ -66,6 +68,7 @@ public class AddGasNodeActivity extends AppCompatActivity {
             if(actIntent.hasExtra("viewIndex")) {
                 tagIndex = actIntent.getIntExtra("viewIndex", -1);
             }
+            originalMileage = node.mileage;
         }
 
 
@@ -77,10 +80,16 @@ public class AddGasNodeActivity extends AppCompatActivity {
                         return;
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("gasnode", g);
                     Intent intent = new Intent();
+                    bundle.putSerializable("gasnode", g);
                     intent.putExtras(bundle);
-                    intent.putExtra("new", true);
+                    if(tagIndex > -1) {
+                        intent.putExtra("viewIndex", tagIndex);
+                        intent.putExtra("update", true);
+                        intent.putExtra("original", originalMileage);
+                    } else {
+                        intent.putExtra("new", true);
+                    }
                     setResult(1, intent);
                     finish();
                 }
@@ -104,6 +113,7 @@ public class AddGasNodeActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.putExtras(bundle);
                         intent.putExtra("viewIndex", tagIndex);
+                        intent.putExtra("delete", true);
                         setResult(1, intent);
                         finish();
                     }

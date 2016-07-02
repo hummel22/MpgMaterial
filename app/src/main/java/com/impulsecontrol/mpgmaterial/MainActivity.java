@@ -69,13 +69,27 @@ public class MainActivity extends AppCompatActivity {
                     gasDAO.addNode(node);
                 }
             }
-            if(intent.hasExtra("viewIndex")) {
+            if(intent.hasExtra("viewIndex") && intent.hasExtra("delete")) {
                 if(node != null) {
                     model.deleteGasNode(node);
                     gasDAO.deleteGasNode(node);
                     Integer indexTag = intent.getIntExtra("viewIndex", -1);
-                    Toast.makeText(MainActivity.this, "Deleting" + Integer.toString(indexTag), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Deleting: " + Integer.toString(indexTag), Toast.LENGTH_SHORT).show();
                     deleteNode(indexTag);
+                }
+            }
+            if(intent.hasExtra("viewIndex") && intent.hasExtra("update")) {
+                if(node != null) {
+                    Integer indexTag = intent.getIntExtra("viewIndex", -1);
+                    Integer oldMileage = intent.getIntExtra("original", -1);
+                    GasNode oldNode = model.getGasNodeByMileage(oldMileage);
+                    model.deleteGasNode(oldNode);
+                    gasDAO.deleteGasNode(oldNode);
+                    deleteNode(indexTag);
+                    model.addGasNode(node);
+                    addNodeView(node);
+                    gasDAO.addNode(node);
+                    Toast.makeText(MainActivity.this, "Updating: " + Integer.toString(indexTag), Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -134,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
         return gas;
     }
 
-    public void deleteNode(Integer index) {
-        if(index > -1) {
+    public void deleteNode(Integer tag) {
+        if(tag > -1) {
             LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout_main);
-            View vDelete =  rLayout.findViewWithTag(index);
+            View vDelete =  rLayout.findViewWithTag(tag);
             rLayout.removeView(vDelete);
         }
     }

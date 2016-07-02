@@ -1,5 +1,7 @@
 package com.impulsecontrol.mpgmaterial;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,7 +34,7 @@ public class GasModel {
     public Integer getIndexByMileage(Integer mileage) {
         Integer index = 0;
         for(GasNode g : gas_data) {
-            if(mileage == g.mileage) {
+            if(mileage.equals( g.mileage)) {
                 return index;
             }
             index++;
@@ -75,9 +77,11 @@ public class GasModel {
     }
 
     public void recalculateMPGs() {
-        ListIterator<GasNode> iter = gas_data.listIterator(gas_data.size()-1);
-        while(iter != gas_data.listIterator(1) && iter.hasPrevious()) {
-            calculateMPG(iter, gas_data.get(iter.nextIndex()));
+        if(gas_data.size() > 0) {
+            ListIterator<GasNode> iter = gas_data.listIterator(gas_data.size() - 1);
+            while (iter != gas_data.listIterator(1) && iter.hasPrevious()) {
+                calculateMPG(iter, gas_data.get(iter.nextIndex()));
+            }
         }
     }
 
@@ -93,6 +97,10 @@ public class GasModel {
         return mpgs;
     }
 
+    public GasNode getGasNodeByMileage(Integer mileage) {
+        Integer index = getIndexByMileage(mileage);
+        return gas_data.get(index);
+    }
 
 
 }
