@@ -28,7 +28,7 @@ public class GasDbHelper extends SQLiteOpenHelper {
     public static final String TYPE_DOUBLE = " REAL";
     public static final String COMMA_SEP = ",";
 
-    public static final String SQL_CREATE_ENTRIES = "CREATE_TABLE " + TABLE_NAME + " (" +
+    public static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_NAME_MILEAGE + TYPE_INTEGER + " PRIMARY KEY" + COMMA_SEP +
             COLUMN_NAME_DATE + TYPE_TEXT + COMMA_SEP +
             COLUMN_NAME_GALLONS + TYPE_DOUBLE + COMMA_SEP +
@@ -36,7 +36,7 @@ public class GasDbHelper extends SQLiteOpenHelper {
             COLUMN_NAME_FULL_TANK + TYPE_INTEGER + COMMA_SEP +
             COLUMN_NAME_PRIUS_MILES + TYPE_DOUBLE + COMMA_SEP +
             COLUMN_NAME_PRIUS_MPG + TYPE_DOUBLE + COMMA_SEP +
-            COLUMN_NAME_PRIUS_SPEED + TYPE_DOUBLE + COMMA_SEP ;
+            COLUMN_NAME_PRIUS_SPEED + TYPE_DOUBLE + ")";
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     public GasDbHelper(Context context) {
@@ -54,10 +54,10 @@ public class GasDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    @Override
-    public void onOpen(SQLiteDatabase db) {
-
-    }
+//    @Override
+//    public void onOpen(SQLiteDatabase db) {
+//
+//    }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

@@ -25,8 +25,12 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity {
 
     final private GasModel model = new GasModel();
+    private GasDAO gasDAO;
 
     private Context mContext;
+    Integer tagIndex = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,39 +38,12 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
+        gasDAO = new GasDAO(mContext);
 
 
-        //TODO Replace with database get
-        //<Replace>
-
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        GasNode node0 = new GasNode();
-
-        try {
-            node0.date = formatter.parse("01/23/1990");
-        } catch (ParseException e) {
-            Toast.makeText(MainActivity.this, "Bad date", Toast.LENGTH_SHORT).show();
-            return;
+        for(GasNode g : gasDAO.getNodes()) {
+            model.addGasNode(g);
         }
-        node0.mileage = 100;
-        node0.gallons = 10.0;
-        node0.price_per_gallon = 2.03;
-        node0.mpg = null;
-        node0.full_tank = true;
-
-
-
-        GasNode node1 = new GasNode();
-        node1.date = node0.date;
-        node1.mileage = 250;
-        node1.gallons = 10.0;
-        node1.price_per_gallon = 2.03;
-        node1.mpg = null;
-        node1.full_tank = true;
-        model.addGasNode(node0);
-        model.addGasNode(node1);
-        //<Replace>
-        //Database.loadNodes(model);
         addNodes(model.getGasNodes());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -85,9 +62,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if(intent != null && intent.hasExtra("gasnode")) {
             GasNode node = (GasNode) intent.getSerializableExtra("gasnode");
-            if (node != null) {
-                model.addGasNode(node);
-                addNodeView(node);
+            if(intent.hasExtra("new")) {
+                if (node != null) {
+                    model.addGasNode(node);
+                    addNodeView(node);
+                    gasDAO.addNode(node);
+                }
+            }
+            if(intent.hasExtra("viewIndex")) {
+                if(node != null) {
+                    model.deleteGasNode(node);
+                    gasDAO.deleteGasNode(node);
+                    Integer indexTag = intent.getIntExtra("viewIndex", -1);
+                    Toast.makeText(MainActivity.this, "Deleting" + Integer.toString(indexTag), Toast.LENGTH_SHORT).show();
+                    deleteNode(indexTag);
+                }
             }
         }
     }
@@ -116,20 +105,41 @@ public class MainActivity extends AppCompatActivity {
 //        CardView cardView = new CardView(mContext);
 //        LayoutInflater li =(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
 //        cardView.addView(li.inflate(R.layout.cardview_layout, null));
-        TextView gas = new TextView(this);
+        GasView gas = new GasView(this);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String mpgs = "NA";
         if(node != null && node.mpg != null) {
             mpgs = Double.toString(node.mpg);
         }
         String gas_string = "Date: " + dateFormat.format(node.date) + " Price Per Gallons: " + Double.toString(node.price_per_gallon) + " Galloons: " + Double.toString(node.gallons)
-                + " Mileage: " + Integer.toString(node.mileage) + " Mpg: " + mpgs;
+                + " Mileage: " + Integer.toString(node.mileage) + " Mpg: " + mpgs +
+                " Prius Miles: " + ((node.prius_milage > -1) ? Double.toString(node.prius_milage): "NA") +
+                " Prius MPG: " + ((node.prius_mpg > -1) ? Double.toString(node.prius_mpg): "NA") +
+                " Prius Speed: " + ((node.prius_ave_speed > -1) ? Double.toString(node.prius_ave_speed): "NA");
         gas.setText(gas_string);
+        gas.setTag(tagIndex++);
+        gas.node = node;
+
+        gas.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                GasView gView = (GasView) v;
+                Intent getNodeActivity = new Intent(MainActivity.this, AddGasNodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("gasnode", gView.node);
+                getNodeActivity.putExtra("viewIndex", (Integer)v.getTag());
+                getNodeActivity.putExtras(bundle);
+                startActivityForResult(getNodeActivity, 1);
+            };
+        });
         return gas;
     }
 
     public void deleteNode(Integer index) {
-
+        if(index > -1) {
+            LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout_main);
+            View vDelete =  rLayout.findViewWithTag(index);
+            rLayout.removeView(vDelete);
+        }
     }
 
     @Override

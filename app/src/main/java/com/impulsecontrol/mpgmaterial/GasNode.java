@@ -10,13 +10,13 @@ import java.util.Date;
  */
 public class GasNode implements Serializable {
     public Date date;
-    public Double price_per_gallon;
+    public Double price_per_gallon = -1.0;
     public Double gallons;
     public Integer mileage;
-    public Boolean full_tank;
-    public Double prius_milage;
-    public Double prius_mpg;
-    public Double prius_ave_speed;
+    public Boolean full_tank = false;
+    public Double prius_milage = -1.0;
+    public Double prius_mpg = -1.0;
+    public Double prius_ave_speed = -1.0;
 
     public Double mpg;
 }
