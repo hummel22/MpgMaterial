@@ -120,19 +120,8 @@ public class MainActivity extends AppCompatActivity {
 //        LayoutInflater li =(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
 //        cardView.addView(li.inflate(R.layout.cardview_layout, null));
         GasView gas = new GasView(this);
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String mpgs = "NA";
-        if(node != null && node.mpg != null) {
-            mpgs = Double.toString(node.mpg);
-        }
-        String gas_string = "Date: " + dateFormat.format(node.date) + " Price Per Gallons: " + Double.toString(node.price_per_gallon) + " Galloons: " + Double.toString(node.gallons)
-                + " Mileage: " + Integer.toString(node.mileage) + " Mpg: " + mpgs +
-                " Prius Miles: " + ((node.prius_milage > -1) ? Double.toString(node.prius_milage): "NA") +
-                " Prius MPG: " + ((node.prius_mpg > -1) ? Double.toString(node.prius_mpg): "NA") +
-                " Prius Speed: " + ((node.prius_ave_speed > -1) ? Double.toString(node.prius_ave_speed): "NA");
-        gas.setText(gas_string);
         gas.setTag(tagIndex++);
-        gas.node = node;
+        gas.setNode(node);
 
         gas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
