@@ -42,10 +42,11 @@ public class GasView extends CardView {
                 );
         params.setMargins(10,20,10,20);
         this.setLayoutParams(params);
-        this.setRadius(9);
+        this.setRadius(0);
         this.setContentPadding(15, 15, 15, 15);
         this.setMaxCardElevation(15);
         this.setCardElevation(9);
+
         this.setPadding(15, 15, 15, 15);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String mpgs = "NA";

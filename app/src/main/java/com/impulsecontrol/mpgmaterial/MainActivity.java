@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Context mContext;
     Integer tagIndex = 0;
+    TextView HUDTextView;
 
 
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
         gasDAO = new GasDAO(mContext);
+        HUDTextView = (TextView) findViewById(R.id.HUDTextView);
 
 
         for(GasNode g : gasDAO.getNodes()) {
@@ -64,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
             GasNode node = (GasNode) intent.getSerializableExtra("gasnode");
             if(intent.hasExtra("new")) {
                 if (node != null) {
+                    if(model.getIndexByMileage(node.mileage) > -1) {
+                        Toast.makeText(MainActivity.this, "Duplicate Mileage!: " + Integer.toString(node.mileage), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     model.addGasNode(node);
                     addNodeView(node);
                     gasDAO.addNode(node);
@@ -102,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
             if (rLayout != null) {
                 View v = buildCardView(g);
                 rLayout.addView(v,0);
+                if(model.getMostRecentMPG() != null) {
+                    HUDTextView.setText("HUD MPG: " + Double.toString(model.getMostRecentMPG()));
+                }
             }
         }
     }
@@ -111,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
         if (rLayout != null) {
             View v = buildCardView(node);
             rLayout.addView(v,model.getModelSize() - model.getIndex(node) - 1);
-        }
+            if(model.getMostRecentMPG() != null) {
+                HUDTextView.setText("HUD MPG: " + Double.toString(model.getMostRecentMPG()));
+            }        }
     }
 
 
