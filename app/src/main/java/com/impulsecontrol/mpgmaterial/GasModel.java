@@ -86,7 +86,12 @@ public class GasModel {
     }
 
     public Double getMostRecentMPG() {
-        return gas_data.get(gas_data.size() - 1).mpg;
+        for (int i = gas_data.size()-1; i > -1; i--) {
+            if(gas_data.get(i) != null) {
+                return gas_data.get(i).mpg;
+            }
+        }
+        return null;
     }
 
     public List<Double> getMPGs() {

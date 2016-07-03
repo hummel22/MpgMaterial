@@ -51,13 +51,16 @@ public class GasView extends CardView {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String mpgs = "NA";
         if(node != null && node.mpg != null) {
-            mpgs = Double.toString(node.mpg);
+            mpgs = GNC.DoubleToString(node.mpg, 2);
         }
-        String gas_string = "Date: " + dateFormat.format(node.date) + " Price Per Gallons: " + Double.toString(node.price_per_gallon) + " Galloons: " + Double.toString(node.gallons)
-                + " Mileage: " + Integer.toString(node.mileage) + " Mpg: " + mpgs +
-                " Prius Miles: " + ((node.prius_milage > -1) ? Double.toString(node.prius_milage): "NA") +
-                " Prius MPG: " + ((node.prius_mpg > -1) ? Double.toString(node.prius_mpg): "NA") +
-                " Prius Speed: " + ((node.prius_ave_speed > -1) ? Double.toString(node.prius_ave_speed): "NA");
+        String gas_string = "Date: " + dateFormat.format(node.date) +
+                "\nPrice Per Gallons: " + GNC.DoubleToString(node.price_per_gallon, 3) +
+                "\nGalloons: " + GNC.DoubleToString(node.gallons, 3) +
+                "\nMileage: " + Integer.toString(node.mileage) +
+                "\nMpg: " + mpgs +
+                "\nPrius Miles: " + ((node.prius_milage > -1) ? GNC.DoubleToString(node.prius_milage, 1): "NA") +
+                " Prius MPG: " + ((node.prius_mpg > -1) ? GNC.DoubleToString(node.prius_mpg, 1): "NA") +
+                " Prius Speed: " + ((node.prius_ave_speed > -1) ? GNC.DoubleToString(node.prius_ave_speed, 1): "NA");
         TextView text = new TextView(mContext);
         text.setText(gas_string);
         this.addView(text);

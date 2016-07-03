@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 View v = buildCardView(g);
                 rLayout.addView(v,0);
                 if(model.getMostRecentMPG() != null) {
-                    HUDTextView.setText("HUD MPG: " + Double.toString(model.getMostRecentMPG()));
+                    HUDTextView.setText("HUD MPG: " + GNC.DoubleToString(model.getMostRecentMPG(), 2));
                 }
             }
         }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             View v = buildCardView(node);
             rLayout.addView(v,model.getModelSize() - model.getIndex(node) - 1);
             if(model.getMostRecentMPG() != null) {
-                HUDTextView.setText("HUD MPG: " + Double.toString(model.getMostRecentMPG()));
+                HUDTextView.setText("HUD MPG: " + GNC.DoubleToString(model.getMostRecentMPG(), 2));
             }        }
     }
 
