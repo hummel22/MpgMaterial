@@ -105,7 +105,7 @@ public class GasDAO {
 
                 }
                 g.prius_ave_speed = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_SPEED));
-                g.prius_milage = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
+                g.prius_milage = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_MILES));
                 g.prius_mpg = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_MPG));
                 nodes.add(g);
                 long rowID = c.getLong(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
