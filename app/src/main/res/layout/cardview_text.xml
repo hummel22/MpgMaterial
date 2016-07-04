@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/CardViewMileage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        />
+
+
+    <TextView
+        android:id="@+id/CardViewMPG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="7dp"
+        android:textSize="32dp"
+        android:layout_below="@+id/CardViewMileage"/>
+
+    <TextView
+        android:id="@+id/CardViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:layout_alignParentRight="true"/>
+
+
+    <TextView
+        android:id="@+id/CardViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/CardViewDate"/>
+
+    <TextView
+        android:id="@+id/CardViewPricePerGallon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/CardViewPrice"/>
+
+
+
+</RelativeLayout>
