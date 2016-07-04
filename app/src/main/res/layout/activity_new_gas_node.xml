@@ -80,7 +80,7 @@
         android:layout_below="@id/CheckBoxFullTank"/>
     <EditText
         android:id="@+id/EditTextPriusMileage"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/CheckBoxFullTank"
@@ -94,7 +94,7 @@
         android:layout_below="@id/EditTextPriusMileage"/>
     <EditText
         android:id="@+id/EditTextPriusMPG"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextPriusMileage"
