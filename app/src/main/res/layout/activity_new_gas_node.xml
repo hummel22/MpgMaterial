@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.impulsecontrol.mpgmaterial.AddGasNodeActivity">
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/NewNodeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW GAS POINT"
+        android:textColor="@color/Black"
+        android:textSize="35dp"
+        android:layout_margin="15dp"
+        android:background="@color/LightBlue"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/TextDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"/>
+        android:text="Date"
+        android:layout_below="@+id/NewNodeHeader"/>
     <EditText
         android:layout_width="150dp"
         android:inputType="date"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:id="@+id/EditTextDate"/>
+        android:layout_below="@+id/NewNodeHeader"
+        android:id="@+id/EditTextDate"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
         android:id="@+id/TextGallonPriceLabel"
@@ -27,7 +51,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/EditTextDate"/>
+        android:layout_below="@id/EditTextDate"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
         android:id="@+id/TextGallonsLabel"
@@ -42,7 +67,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextGallonPrice"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
         android:id="@+id/TextMileageLabel"
@@ -56,7 +82,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextGallons"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
     android:id="@+id/TextFullTankLabel"
@@ -69,7 +96,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextMileage"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
 
     <TextView
@@ -84,7 +112,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/CheckBoxFullTank"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
         android:id="@+id/TextPriusMPG"
@@ -98,7 +127,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextPriusMileage"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <TextView
         android:id="@+id/TextPriusSpeed"
@@ -112,7 +142,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/EditTextPriusMPG"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/EditTextAddMarging"/>
 
     <Button
         android:id="@+id/ButtonDone"
@@ -135,3 +166,5 @@
 
 
 </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

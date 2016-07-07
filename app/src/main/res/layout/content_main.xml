@@ -24,28 +24,35 @@
         card_view:cardMaxElevation="30dp"
         card_view:cardElevation="25dp"
         android:elevation="30dp"
+        android:background="@color/LightBlue"
+        card_view:cardBackgroundColor="@color/LightBlue"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@color/LightBlue"
+            >
         <TextView
             android:id="@+id/HUDText"
             android:text="Latest Data:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:textColor="@color/WhiteGray"
+            android:background="@color/LightBlue"
             />
         <TextView
             android:id="@+id/HUDTextView"
             android:textSize="40dp"
-            android:textColor="@color/Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_below="@+id/HUDText"
+            android:textColor="@color/White"
+            android:background="@color/LightBlue"
             />
         </RelativeLayout>
 
