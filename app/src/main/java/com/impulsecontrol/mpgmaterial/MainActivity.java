@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addNodes(List<GasNode> nodes) {
+        Log.d("Nodes", "Adding nodes to View");
         LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout_main);
         for (GasNode g : nodes) {
             if (rLayout != null) {
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void addNodeView(GasNode node) {
         LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout_main);
         if (rLayout != null) {
+            Log.d("View", "Adding node " + Integer.toString(node.mileage));
             View v = buildCardView(node);
             rLayout.addView(v,model.getModelSize() - model.getIndex(node) - 1);
             if(model.getMostRecentMPG() != null) {

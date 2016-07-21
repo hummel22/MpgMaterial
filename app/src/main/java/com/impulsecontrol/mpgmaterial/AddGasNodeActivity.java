@@ -62,7 +62,7 @@ public class AddGasNodeActivity extends AppCompatActivity {
             if(node.gallons != null) gallons.setText(Double.toString(node.gallons));
             if(node.price_per_gallon > -1.0) gallonsPrice.setText(Double.toString(node.price_per_gallon));
             if(node.full_tank != null) fullTank.setChecked(node.full_tank);
-            if(node.prius_milage > -1.0) prius_miles.setText(Double.toString(node.prius_milage));
+            if(node.prius_mileage > -1.0) prius_miles.setText(Double.toString(node.prius_mileage));
             if(node.prius_mpg > -1.0) prius_mpg.setText(Double.toString(node.prius_mpg));
             if(node.prius_ave_speed > -1.0) prius_speed.setText(Double.toString(node.prius_ave_speed));
             if(actIntent.hasExtra("viewIndex")) {
@@ -143,7 +143,7 @@ public class AddGasNodeActivity extends AppCompatActivity {
             return null;
         }
         if (!prius_miles.getText().toString().equals("")) {
-            g.prius_milage = Double.parseDouble(prius_miles.getText().toString());
+            g.prius_mileage = Double.parseDouble(prius_miles.getText().toString());
         }
         if (!prius_mpg.getText().toString().equals("")) {
             g.prius_mpg = Double.parseDouble(prius_mpg.getText().toString());

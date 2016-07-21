@@ -36,12 +36,12 @@ public class GasDAO {
         values.put(GasDbHelper.COLUMN_NAME_FULL_TANK, g.full_tank);
         values.put(GasDbHelper.COLUMN_NAME_GALLONS, g.gallons);
         values.put(GasDbHelper.COLUMN_NAME_PRICE_PER_GALLON, g.price_per_gallon);
-        values.put(GasDbHelper.COLUMN_NAME_PRIUS_MILES, g.prius_milage);
+        values.put(GasDbHelper.COLUMN_NAME_PRIUS_MILES, g.prius_mileage);
         values.put(GasDbHelper.COLUMN_NAME_PRIUS_MPG, g.prius_mpg);
         values.put(GasDbHelper.COLUMN_NAME_PRIUS_SPEED, g.prius_ave_speed);
 
         long newRowID;
-        newRowID = db.insert(GasDbHelper.TABLE_NAME,
+        newRowID = db.insert(GasDbHelper.ENTRY_TABLE,
                 null,
                 values);
         dbMap.put(g.mileage, newRowID);
@@ -50,18 +50,17 @@ public class GasDAO {
 
     public Boolean deleteGasNode(GasNode g) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.delete(GasDbHelper.TABLE_NAME, GasDbHelper.COLUMN_NAME_MILEAGE + "=" + Integer.toString(g.mileage), null);
+        db.delete(GasDbHelper.ENTRY_TABLE_OLD, GasDbHelper.COLUMN_NAME_MILEAGE + "=" + Integer.toString(g.mileage), null);
         return true;
     }
 
     public List<GasNode> getNodes() {
+        Log.i("Database", "Loading Nodes from Database");
         List<GasNode> nodes = new ArrayList<>();
-        Log.d("TAG", "Getting Readable DataBase");
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Log.d("TAG", "Got IT!");
-
         String[] columns = {
                 GasDbHelper.COLUMN_NAME_MILEAGE,
+                GasDbHelper.COLUMN_NAME_FULL_TANK,
                 GasDbHelper.COLUMN_NAME_DATE,
                 GasDbHelper.COLUMN_NAME_FULL_TANK,
                 GasDbHelper.COLUMN_NAME_GALLONS,
@@ -73,27 +72,20 @@ public class GasDAO {
 
         String sortOrder = GasDbHelper.COLUMN_NAME_MILEAGE + " DESC";
 
-        Log.d("TAG", "QUery GO!");
-
-        Cursor c = db.query(GasDbHelper.TABLE_NAME,
+        Log.d("Database", "Quering Database");
+        Cursor c = db.query(GasDbHelper.ENTRY_TABLE,
                 columns,
                 null,
                 null,
                 null,
                 null,
                 sortOrder);
-        Log.d("TAG", "Query Done");
-
-        Log.d("TAG", "Pulling");
-
         if(c.moveToNext()) {
-            Log.d("TAG", "Has Next");
-
             while(c.isAfterLast() == false) {
-                Log.d("TAG", "Found");
-
+                Log.d("Database","Getting Node");
                 GasNode g = new GasNode();
                 g.mileage = c.getInt(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
+                Log.d("Database","Loaded Node " + Integer.toString(g.mileage));
                 g.price_per_gallon = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRICE_PER_GALLON));
                 g.gallons = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_GALLONS));
                 g.full_tank = (c.getInt(c.getColumnIndex(GasDbHelper.COLUMN_NAME_FULL_TANK))==1)?true:false;
@@ -104,9 +96,9 @@ public class GasDAO {
                 } catch (ParseException e) {
 
                 }
-                g.prius_ave_speed = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_SPEED));
-                g.prius_milage = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_MILES));
-                g.prius_mpg = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_PRIUS_MPG));
+                g.prius_ave_speed = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
+                g.prius_mileage = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
+                g.prius_mpg = c.getDouble(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
                 nodes.add(g);
                 long rowID = c.getLong(c.getColumnIndex(GasDbHelper.COLUMN_NAME_MILEAGE));
                 dbMap.put(g.mileage, rowID);
